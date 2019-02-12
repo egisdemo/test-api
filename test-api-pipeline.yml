@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: BuildConfig
 metadata:
-  name:audit-api-pipeline
+  name:test-api-pipeline
 spec:
   source:
     git:
@@ -12,13 +12,13 @@ spec:
     jenkinsPipelineStrategy:
       env:
       - name: GITHUB_CREDS
-        value: uscis-egis-build-uscis-egis-audit-api-pipeline-secret
+        value: uscis-egis-build-uscis-egis-test-api-pipeline-secret
       - name: GITHUB_PROJECT_URL
-        value: https://github.com/egisdemo/audit-api.git
+        value: https://github.com/egisdemo/test-api.git
       - name: GITHUB_BRANCH
         value: master
       - name: MS_APP_NAME
-        value: encryption-api
+        value: test-api
       - name: MS_APP_VERSION
         value: v4
       - name: UNIT_TESTS_EN
@@ -46,4 +46,4 @@ spec:
   triggers:
     - type: "GitHub"
       github:
-        secret: "audit-api-git-hook-secret" 
+        secret: "test-api-git-hook-secret" 
