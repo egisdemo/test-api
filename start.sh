@@ -1,4 +1,4 @@
 oc project uscis-egis-build || true
-oc delete -f audit-api-pipeline.yml || true 
-oc create -f audit-api-pipeline.yml
-oc start-build audit-api-pipeline
+oc delete -f test-api-pipeline.yml || true 
+oc create -f test-api-pipeline.yml
+oc start-build test-api-pipeline
