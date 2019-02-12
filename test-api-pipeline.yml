@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name:audit-api-pipeline
+spec:
+  source:
+    git:
+      uri: https://github.com/egisdemo/nav_ops.git
+    sourceSecret:
+      name: gurugitcreds
+  strategy:
+    jenkinsPipelineStrategy:
+      env:
+      - name: GITHUB_CREDS
+        value: uscis-egis-build-uscis-egis-audit-api-pipeline-secret
+      - name: GITHUB_PROJECT_URL
+        value: https://github.com/egisdemo/audit-api.git
+      - name: GITHUB_BRANCH
+        value: master
+      - name: MS_APP_NAME
+        value: encryption-api
+      - name: MS_APP_VERSION
+        value: v4
+      - name: UNIT_TESTS_EN
+        value: "False"
+      - name: CODE_REVIEW_EN
+        value: "True"
+      - name: PLAYBOOKS_GIT_URL
+        value: https://github.com/egisdemo/nav_ops.git
+      - name: PLAYBOOKS_BRANCH
+        value: master
+      - name: DOCKER_REGISTRY
+        value: nexus.reisystems.io
+      - name: DOCKER_USERNAME
+        value: "****"
+      - name: DOCKER_PASSWD
+        value: "****"
+      - name: BUILD_PROJECT
+        value: uscis-egis-build
+      - name: DEV_PROJECT
+        value: uscis-egis-dev 
+      - name: QA_PROJECT
+        value: uscis-egis-stage
+      - name: PROD_PROJECT
+        value: uscis-egis-prod
+  triggers:
+    - type: "GitHub"
+      github:
+        secret: "audit-api-git-hook-secret" 
